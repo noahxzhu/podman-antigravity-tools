@@ -1,0 +1,19 @@
+[Unit]
+Description=Antigravity Manager
+After=network-online.target
+
+[Container]
+Image=docker.io/lbjlaq/antigravity-manager:latest
+ContainerName=antigravity-manager
+PublishPort=8045:8045
+Volume=%h/.antigravity_tools:/root/.antigravity_tools
+Environment=LOG_LEVEL=info
+Environment=API_KEY=your-secret-key
+AutoUpdate=registry
+
+[Service]
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=default.target
